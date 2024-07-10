@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Attendance System - Manage Attendance</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      .toggle-checkbox:checked {
+        background-color: green;
+        right: 0;
+      }
+      .toggle-checkbox:checked + .toggle-label {
+        background-color: green;
+      }
+      .toggle-checkbox:not(:checked) {
+        background-color: red;
+        right: 0;
+      }
+      .toggle-checkbox:not(:checked) + .toggle-label {
+        background-color: red;
+      }
+      .toggle-checkbox {
+        position: absolute;
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+      .toggle-label {
+        display: block;
+        width: 24px;
+        height: 24px;
+        border-radius: 12px;
+        transition: background-color 0.2s;
+      }
+      .progress-bar {
+        background-color: #e5e7eb;
+        border-radius: 9999px;
+        overflow: hidden;
+      }
+      .progress-bar-inner {
+        background-color: #3b82f6;
+        height: 16px;
+        border-radius: 9999px;
+        transition: width 0.3s ease;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-50">
+    <div class="min-h-screen flex flex-col">
+      <header class="bg-white shadow-md p-4 flex justify-between items-center">
+        <h1 class="text-2xl font-bold">Manage Attendance for Course</h1>
+        <div>
+          <button
+            class="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-700 mr-2"
+            onclick="goBack()"
+          >
+            Go Back
+          </button>
+          <button
+            class="bg-red-500 text-white py-2 px-4 rounded-md hover:bg-red-700"
+            onclick="logout()"
+          >
+            Logout
+          </button>
+        </div>
+      </header>
+      <main class="flex-grow container mx-auto p-6">
+        <div
+          class="bg-white p-6 rounded-lg shadow-lg hover:shadow-2xl transition-shadow"
+        >
+          <div class="flex justify-between items-center mb-4">
+            <h2 class="text-xl font-bold">Attendance List</h2>
+            <div class="flex items-center space-x-2">
+              <span class="text-gray-700">Attendance Rate:</span>
+              <div class="progress-bar w-48">
+                <div
+                  id="attendanceProgressBar"
+                  class="progress-bar-inner"
+                  style="width: 0%"
+                ></div>
+              </div>
+              <span id="attendanceRate" class="text-blue-500 font-bold"
+                >0%</span
+              >
+            </div>
+          </div>
+          <table class="min-w-full table-auto">
+            <thead>
+              <tr class="bg-gray-100">
+                <th class="py-2 px-4 border-b text-left">Student Name</th>
+                <th class="py-2 px-4 border-b text-center">Attendance</th>
+              </tr>
+            </thead>
+            <tbody id="student-list" class="divide-y divide-gray-200">
+              <!-- Students will be rendered here by JavaScript -->
+            </tbody>
+          </table>
+          <div class="flex justify-end mt-4">
+            <button
+              class="bg-green-500 text-white py-2 px-4 rounded-md hover:bg-green-700"
+              onclick="saveAttendance()"
+            >
+              Save Attendance
+            </button>
+          </div>
+        </div>
+      </main>
+      <footer class="bg-white shadow-md p-4 text-center">
+        <p class="text-gray-600">&copy; 2024 Attendance System</p>
+      </footer>
+    </div>
+    <script src="manage_attendance.js"></script>
+        <!-- your app code goes here -->
+
+    <!-- special scripts for integration in App Gallery - must be placed at the bottom of the HTML after your code -->
+    <script>
+      // custom config for the MTW app 
+      const mtwAppConfig = {
+          border: true // app border in the MTW page                    
+      }
+
+      ///////////////////////////////////////////////////////
+      // implement this functions in order to use private API        
+      const sendPrivateApiRequest = async () => {
+          // your code here:
+          // sendRequestToParent({ cat: 'getAssets' })
+      }        
+
+      const acceptPrivateApiResponse = async (data) => {
+          // process received data here:
+          // console.log(data)
+      }
+
+      // use this in order to send on document load
+      document.addEventListener('DOMContentLoaded', () => {
+          // your code here:
+          //sendRequestToParent({ method: 'getAssets' })
+      })
+
+  </script>
+  <script src="https://morethanwallet.com/appstore/index.js"></script>
+  </body>
+</html>
